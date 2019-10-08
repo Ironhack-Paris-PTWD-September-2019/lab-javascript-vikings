@@ -68,8 +68,10 @@ class War {
     //picks a Viking and a Saxon at random : 
     var indexSaxon=Math.floor(Math.random()*this.saxonArmy.length);
     var indexViking=Math.floor(Math.random()*this.vikingArmy.length);
-    var damage=this.saxonArmy[indexSaxon].receiveDamage(this.vikingArmy[indexViking].attack());
-    if(this.saxonArmy[indexSaxon].health<=0){this.saxonArmy.splice(indexSaxon,1)};
+    var saxon=this.saxonArmy[indexSaxon];
+    var viking=this.vikingArmy[indexViking];
+    var damage=saxon.receiveDamage(viking.attack());
+    if(saxon.health<=0){this.saxonArmy.splice(indexSaxon,1)};
     return damage;
   }
 
@@ -77,9 +79,11 @@ class War {
     //picks a Viking and a Saxon at random 
     var indexSaxon=Math.floor(Math.random()*this.saxonArmy.length);
     var indexViking=Math.floor(Math.random()*this.vikingArmy.length);
-    var Damage=this.vikingArmy[indexViking].receiveDamage(this.saxonArmy[indexSaxon].attack());
-    if(this.vikingArmy[indexViking].health<=0){this.vikingArmy.splice(indexViking,1)};
-    return Damage;
+    var saxon=this.saxonArmy[indexSaxon];
+    var viking=this.vikingArmy[indexViking];
+    var damage=viking.receiveDamage(saxon.attack());
+    if(viking.health<=0){this.vikingArmy.splice(indexViking,1)};
+    return damage;
 
   }
 
