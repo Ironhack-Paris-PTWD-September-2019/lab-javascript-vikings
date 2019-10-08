@@ -77,15 +77,38 @@ class War {
 
         this.saxonDefender.receiveDamage(this.vikingAttacker.attack());
 
-        if(this.saxonDefender <= 0) {
-            // en cours :)
+        if(this.saxonDefender.health <= 0) {
+            this.saxonArmy.splice(randomIndexSaxon, 1);
+            return `A Saxon has died in combat`;
         }
+
+        return `A Saxon has received ${this.vikingAttacker.strength} points of damage`;
     }
 
     saxonAttack() {
+        let randomIndexViking = Math.floor(Math.random() * this.vikingArmy.length);
+        let randomIndexSaxon = Math.floor(Math.random() * this.saxonArmy.length);
 
+        this.saxonAttacker = this.saxonArmy[randomIndexSaxon];
+        this.vikingDefender = this.vikingArmy[randomIndexViking];
+
+        this.vikingDefender.receiveDamage(this.saxonAttacker.attack());
+
+        if(this.vikingDefender.health <= 0) {
+            this.vikingArmy.splice(randomIndexViking, 1);
+            return `A Viking has died in combat`;
+        }
+
+        return `${this.vikingDefender.name} has received ${this.saxonAttacker.strength} points of damage`;
     }
 
-    showStatus() {}
-
+    showStatus() {
+        if(this.vikingArmy.length !== 0 & this.saxonArmy.length !== 0) {
+            return `Vikings and Saxons are still in the thick of battle.`;
+        } else if (this.saxonArmy.length === 0) {
+            return `Vikings have won the war of the century!`;
+        } else {
+            return `Saxons have fought for their lives and survive another day...`;
+        }    
+    }
 }
