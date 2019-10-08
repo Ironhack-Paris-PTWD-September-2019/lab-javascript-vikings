@@ -69,9 +69,10 @@ class War {
         let sax = this.saxonArmy[Math.floor(Math.random()*this.saxonArmy.length)];
         let vik = this.vikingArmy[Math.floor(Math.random()*this.vikingArmy.length)];
         let battle = sax.receiveDamage(vik.strength);
-        if (battle === "A Saxon has died in combat"){
-            this.saxonArmy.unshift[sax];
+        if (sax.health<=0){
+            this.saxonArmy.splice(sax);
         }
+        
         return battle;
     }
 
@@ -79,6 +80,9 @@ class War {
         let sax = this.saxonArmy[Math.floor(Math.random()*this.saxonArmy.length)];
         let vik = this.vikingArmy[Math.floor(Math.random()*this.vikingArmy.length)];
         let battle = vik.receiveDamage(sax.strength);
+        if (vik.health<=0){
+            this.vikingArmy.splice(vik);
+        }
         return battle;
     }
 
