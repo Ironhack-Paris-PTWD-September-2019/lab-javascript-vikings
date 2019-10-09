@@ -51,5 +51,5 @@ class Saxon extends Soldier {
 }
 }
 
-// War
+///War
 class War {}
