@@ -56,9 +56,23 @@ class War {
     this.saxonArmy.push(Saxon);
   }
   vikingAttack() {
+    var chosenSaxon = Math.floor(Math.random()*this.saxonArmy.length);
+    var chosenViking = Math.floor(Math.random()*this.vikingArmy.length);
+    this.saxonArmy[chosenSaxon].receiveDamage(this.vikingArmy[chosenViking].strength);
+    
   }
   saxonAttack() {
+    var chosenSaxon = Math.floor(Math.random()*this.saxonArmy.length);
+    var chosenViking = Math.floor(Math.random()*this.vikingArmy.length);
+    this.vikingArmy[chosenViking].receiveDamage(this.saxonArmy[chosenSaxon].strength);
   }
   showStatus() {
+    if (this.saxonArmy.length === 0) {
+      return "Vikings have won the war of the century!";
+    } else if (this.vikingArmy.length === 0) {
+      return "Saxons have fought for their lives and survive another day...";
+    } else {
+      return "Vikings and Saxons are still in the thick of battle.";
+    }
   }
 }
